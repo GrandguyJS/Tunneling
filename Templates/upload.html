@@ -1,0 +1,15 @@
+{% extends "base.html" %} {% block title %}Download{% endblock %}
+{% block mid %}
+<div class="midhead">
+    <form action = "/success" method = "post" enctype="multipart/form-data">  
+        <label for="fileinput" class="custom-file-upload upload">
+            Upload File
+            <input multiple directory type="file" name="file[]" id="fileinput"/>  
+        </label>
+        
+        <input type="text" name="password" placeholder="Password" class="upload"/>
+        <input type = "submit" value="Upload" class="uploadbutton">  
+    </form>  
+</div>
+
+{% endblock %}
