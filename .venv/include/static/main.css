@@ -145,6 +145,7 @@ body {
 	color: var(--primary-color);
     font-family: PoppinsMedium;
     transition: all 0.2s ease-in-out;
+	cursor: pointer;
 }
 
 .headerlogin {
