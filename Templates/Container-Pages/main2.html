@@ -1,0 +1,10 @@
+{% extends "base.html" %} {% block title %}SUCCESS{% endblock %}
+{% block mid %}
+<div class="success">
+   <p>File uploaded successfully</p>
+   <p>Tunnel Key: {{name}}</p>
+   <p id="tocopy">URL: {{ url }}</p>
+
+</div>
+
+{% endblock %}
