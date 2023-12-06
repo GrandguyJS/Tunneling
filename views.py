@@ -43,7 +43,7 @@ def success():
             b.write(code1)
             b.close()
         shutil.rmtree(url+"/")
-        return render_template("/Container-Pages/main2.html", name = str(code), url = f"http://carrycode.us.to:5000/downloadrequest?url={code}&pass={code1}")
+        return render_template("/Container-Pages/success.html", name = str(code), url = f"http://carrycode.us.to:5000/downloadrequest?url={code}&pass={code1}")
 
 
 @views.route("/download", methods = ['POST', "GET"])
