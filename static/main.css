@@ -365,7 +365,7 @@ body {
 /* Success-Page */
 
 .success-wrapper {
-    border: 2px solid var(--secondary-color);
+    border: 2px solid var(--primary-accent-color);
     border-radius: 5px;
     box-shadow: var(--primary-color);
     
@@ -379,12 +379,16 @@ body {
     gap: 15px;
 }
 
+.success-key-wrapper p {
+    color: var(--primary-accent-color);
+}
+
 .success-copy-wrapper {
     display: flex;
     align-items: center;
     gap: 10px;
 
-    border: 2px solid var(--secondary-color);
+    border: 2px solid var(--primary-accent-color);
     border-radius: 5px;
     box-shadow: var(--primary-color);
 
@@ -392,4 +396,13 @@ body {
     padding: 5px;
 
     cursor: pointer;
+
+    background-color: var(--primary-accent-color);
+
+    transition: all 130ms ease-in-out;
+}
+
+.success-copy-wrapper:hover {
+    background-color: white;
+    color: var(--primary-accent-color);
 }

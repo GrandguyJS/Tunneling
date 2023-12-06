@@ -8,8 +8,8 @@ import hashlib
 views = Blueprint("views", __name__)
 
 def senddata(key, code=""):
-    path = "C:/Users/GrandguyMC/Documents/Tunneling/Uploads/"+str(key)+".zip"
-    path2 = "C:/Users/GrandguyMC/Documents/Tunneling/Uploads/"+key+".txt"
+    path = "C:/Users/grand/Documents/Tunneling/Uploads/"+str(key)+".zip"
+    path2 = "C:/Users/grand/Documents/Tunneling/Uploads/"+key+".txt"
     if os.path.exists(path):
         with open(path2, "r") as b:
             if b.read() == str(code):
@@ -30,7 +30,7 @@ def success():
         code1 = request.form["password"]
         
         code = uuid.uuid4()
-        url= "C:/Users/GrandguyMC/Documents/Tunneling/Uploads/"+str(code)
+        url= "C:/Users/grand/Documents/Tunneling/Uploads/"+str(code)
         f = request.files.getlist("file[]")
         
         os.makedirs(url)
@@ -39,7 +39,7 @@ def success():
             i.save(url+"/"+i.filename)  
 
         shutil.make_archive(url, 'zip', url)
-        with open("C:/Users/GrandguyMC/Documents/Tunneling/Uploads/"+str(code) +".txt", "w") as b:
+        with open("C:/Users/grand/Documents/Tunneling/Uploads/"+str(code) +".txt", "w") as b:
             b.write(code1)
             b.close()
         shutil.rmtree(url+"/")
@@ -51,7 +51,7 @@ def download():
     if request.method == "POST":
         key = request.form["url"]
         code = request.form["pass"]
-        path = "C:/Users/GrandguyMC/Documents/Tunneling/Uploads/"+str(key)+".zip"
+        path = "C:/Users/grand/Documents/Tunneling/Uploads/"+str(key)+".zip"
 
         request1 = senddata(key,code)
 
@@ -74,7 +74,7 @@ def downloadrequest():
         code = args.get("pass")
         if code == "":
             code = ""
-        path = "C:/Users/GrandguyMC/Documents/Tunneling/Uploads/"+str(key)+".zip"
+        path = "C:/Users/grand/Documents/Tunneling/Uploads/"+str(key)+".zip"
 
         request1 = senddata(key,code)
 
