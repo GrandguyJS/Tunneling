@@ -361,3 +361,35 @@ body {
 	position: absolute;
 	z-index: -1;
 }
+
+/* Success-Page */
+
+.success-wrapper {
+    border: 2px solid var(--secondary-color);
+    border-radius: 5px;
+    box-shadow: var(--primary-color);
+    
+    padding: 20px;
+
+    font-size: 17px;
+    font-family: PoppinsRegular;
+
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.success-copy-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    border: 2px solid var(--secondary-color);
+    border-radius: 5px;
+    box-shadow: var(--primary-color);
+
+    width: max-content;
+    padding: 5px;
+
+    cursor: pointer;
+}

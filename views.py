@@ -22,7 +22,7 @@ def senddata(key, code=""):
 
 @views.route("/")
 def home():
-    return render_template("main.html")
+    return render_template("/Container-Pages/main.html")
 
 @views.route('/success', methods = ['POST'])  
 def success():  
@@ -43,7 +43,7 @@ def success():
             b.write(code1)
             b.close()
         shutil.rmtree(url+"/")
-        return render_template("main2.html", name = str(code), url = f"http://carrycode.us.to:5000/downloadrequest?url={code}&pass={code1}")
+        return render_template("/Container-Pages/main2.html", name = str(code), url = f"http://carrycode.us.to:5000/downloadrequest?url={code}&pass={code1}")
 
 
 @views.route("/download", methods = ['POST', "GET"])
@@ -58,13 +58,13 @@ def download():
         if request1 == "OK":
             return send_file(path, as_attachment=True)
         elif request1 == "NO":
-            return render_template("download.html", problem="Wrong Password or Tunnel Key")
+            return render_template("/Container-Pages/download.html", problem="Wrong Password or Tunnel Key")
     else:
-        return render_template("download.html")
+        return render_template("/Container-Pages/download.html")
 
 @views.route("/upload")
 def upload():
-    return render_template("upload.html")
+    return render_template("/Container-Pages/upload.html")
 
 @views.route("/downloadrequest")
 def downloadrequest():
@@ -81,16 +81,22 @@ def downloadrequest():
         if request1 == "OK":
             return send_file(path, as_attachment=True)
         elif request1 == "NO":
-            return render_template("download.html", problem="Wrong Password or Tunnel Key")
+            return render_template("/Container-Pages/download.html", problem="Wrong Password or Tunnel Key")
     else:
-        return render_template("download.html")
+        return render_template("/Container-Pages/download.html")
 
 @views.route("/page1", methods = ['POST', "GET"])
 def page1():
-    return render_template("howdoesitwork.html")
+    return render_template("/Container-Pages/howdoesitwork.html")
 @views.route("/page2", methods = ['POST', "GET"])
 def page2():
-    return render_template("howdoesitwork.html")
+    return render_template("/Container-Pages/howdoesitwork.html")
 @views.route("/page3", methods = ['POST', "GET"])
 def page3():
-    return render_template("privacy.html")
+    return render_template("/Container-Pages/privacy.html")
+@views.route("/login1", methods = ['POST', "GET"])
+def login1():
+    return render_template("/Logon/login.html")
+@views.route("/login2", methods = ['POST', "GET"])
+def login2():
+    return render_template("/Logon/signup.html")
