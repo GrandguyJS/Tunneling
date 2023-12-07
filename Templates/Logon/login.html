@@ -1,0 +1,26 @@
+{% extends "base.html" %} {% block title %}Download{% endblock %}
+{% block mid %}
+<div class="logon-wrapper login-wrapper">
+    <div class="login-username-wrapper logon-child-wrapper">
+
+        <input type="text" id="login-username" class="login-input" placeholder="Username" required="">
+
+        
+    </div>
+    <div class="login-password-wrapper logon-child-wrapper">
+    
+        <input type="text" id="login-password" class="login-input" placeholder="Password" required="">
+
+        
+    </div>
+    <div class="login-submit-wrapper logon-child-wrapper">
+        <form action="/login-submit">
+            <input type="submit" value="Login" id="login-submit" class="login-input login-submit">
+        </form>
+    </div>
+    <div class="login-signupoption-wrapper logon-child-wrapper">
+        <form action="/login2" style="display: none;" id="signup-switch-void"></form>
+        <p id="signup-alternative">or <a onclick="document.getElementById('signup-switch-void').submit()" id="signup-alternative-anchor">Sign Up</a> here</p>
+    </div>
+</div>
+{% endblock %}
