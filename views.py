@@ -8,8 +8,7 @@ import urllib.parse
 
 views = Blueprint("views", __name__)
 
-domain = str(urllib.parse.urlparse(flask.request.base_url).hostname) # Gets website domain name
-print(domain)
+
 
 def senddata(key, code=""):
     path = "C:/Users/grand/Documents/Tunneling/Uploads/"+str(key)+".zip"
@@ -26,6 +25,8 @@ def senddata(key, code=""):
 
 @views.route("/")
 def home():
+    
+    
     return render_template("/Container-Pages/main.html")
 
 @views.route('/success', methods = ['POST'])  
@@ -47,7 +48,10 @@ def success():
             b.write(code1)
             b.close()
         shutil.rmtree(url+"/")
-        return render_template("/Container-Pages/success.html", name = str(code), url = f"https://carrycode.us.to:5000/downloadrequest?url={code}&pass={code1}")
+
+        domain = request.url      # Get the current domain name
+
+        return render_template("/Container-Pages/success.html", name = str(code), url = f"{domain}downloadrequest?url={code}&pass={code1}")
 
 
 @views.route("/download", methods = ['POST', "GET"])
