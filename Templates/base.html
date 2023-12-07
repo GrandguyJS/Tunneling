@@ -40,11 +40,15 @@
                 <div class="headerloginvoid">
 
                 </div>
-                <div class="headerloginlogin headerloginchild">
-                    <p>Login</p>
+                <div class="headerloginlogin headerloginchild headerchild">
+                    <form action="/login1" id="loginpage1">
+                        <p type="submit" onclick="document.getElementById('loginpage1').submit()">Login</p>
+                    </form>
                 </div>
-                <div class="headerloginsignup headerloginchild">
-                    <p>Sign Up</p>
+                <div class="headerloginsignup headerloginchild headerchild">
+                    <form action="/login2" id="loginpage2">
+                        <p type="submit" onclick="document.getElementById('loginpage2').submit()">Sign Up</p>
+                    </form>
                 </div>
                 
             </div>
@@ -55,7 +59,7 @@
             <div class="mid">
                 {% block mid %}
                 {% endblock %}
-                </div>
+                
                 
             </div>
         </div>

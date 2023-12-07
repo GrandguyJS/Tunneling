@@ -406,3 +406,55 @@ body {
     background-color: white;
     color: var(--primary-accent-color);
 }
+
+/* Login-Page */
+
+.login-wrapper, .logon-child-wrapper, .signup-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.login-input, .logon-input, .signup-input{
+    padding: 10px;
+
+    font-size: 17px;
+    font-family: PoppinsRegular;
+
+    background-color: var(--background-color);
+    color: var(--text-color);
+
+    border: 2px solid var(--primary-accent-color);
+    border-radius: 5px;
+    box-shadow: var(--primary-color);
+
+    width: 20vw;
+
+    background-color: var(--primary-accent-color);
+    
+}
+
+.login-submit, .signup-submit {
+    box-sizing: content-box;
+
+    border: 2px solid var(--primary-accent-color);
+    background-color: var(--primary-accent-color);
+    color: white;
+
+    cursor: pointer;
+}
+
+#signup-alternative {
+    font-family: PoppinsRegular;
+    font-size: 12px;
+}
+
+#signup-alternative-anchor {
+    cursor: pointer; 
+    text-decoration: underline;
+}
+
+/* Signup-Page */
+
