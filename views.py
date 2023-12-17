@@ -113,3 +113,4 @@ def login1():
 @views.route("/login2", methods = ['POST', "GET"])
 def login2():
     return render_template("/Logon/signup.html")
+#Test
