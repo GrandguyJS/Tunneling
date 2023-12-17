@@ -8,11 +8,11 @@ import urllib.parse
 
 views = Blueprint("views", __name__)
 
-
+base_url = "C:/Users/grand/Documents/Tunneling/Uploads/"
 
 def senddata(key, code=""):
-    path = "C:/Users/grand/Documents/Tunneling/Uploads/"+str(key)+".zip"
-    path2 = "C:/Users/grand/Documents/Tunneling/Uploads/"+key+".txt"
+    path = base_url+str(key)+".zip"
+    path2 = base_url+key+".txt"
     if os.path.exists(path):
         with open(path2, "r") as b:
             if b.read() == str(code):
@@ -35,7 +35,7 @@ def success():
         code1 = request.form["password"]
         
         code = uuid.uuid4()
-        url= "C:/Users/grand/Documents/Tunneling/Uploads/"+str(code)
+        url= base_url+str(code)
         f = request.files.getlist("file[]")
         
         os.makedirs(url)
@@ -44,7 +44,7 @@ def success():
             i.save(url+"/"+i.filename)  
 
         shutil.make_archive(url, 'zip', url)
-        with open("C:/Users/grand/Documents/Tunneling/Uploads/"+str(code) +".txt", "w") as b:
+        with open(base_url+str(code) +".txt", "w") as b:
             b.write(code1)
             b.close()
         shutil.rmtree(url+"/")
@@ -59,7 +59,7 @@ def download():
     if request.method == "POST":
         key = request.form["url"]
         code = request.form["pass"]
-        path = "C:/Users/grand/Documents/Tunneling/Uploads/"+str(key)+".zip"
+        path = base_url+str(key)+".zip"
 
         request1 = senddata(key,code)
 
@@ -82,7 +82,7 @@ def downloadrequest():
         code = args.get("pass")
         if code == "":
             code = ""
-        path = "C:/Users/grand/Documents/Tunneling/Uploads/"+str(key)+".zip"
+        path = base_url+str(key)+".zip"
 
         request1 = senddata(key,code)
 
@@ -92,6 +92,11 @@ def downloadrequest():
             return render_template("/Container-Pages/download.html", problem="Wrong Password or Tunnel Key")
     else:
         return render_template("/Container-Pages/download.html")
+
+@views.route("/downloadanonym")
+def downloadanonym():
+    if request.method == "POST":
+        pass
 
 @views.route("/page1", methods = ['POST', "GET"])
 def page1():
