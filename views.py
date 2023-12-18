@@ -5,10 +5,11 @@ import shutil
 from werkzeug.security import generate_password_hash, check_password_hash
 import hashlib
 import urllib.parse
+import requests
 
 views = Blueprint("views", __name__)
 
-base_url = "C:/Users/grand/Documents/Tunneling/Uploads/"
+base_url = "/Users/grandguymc/Code/Tunneling/Uploads/"
 
 def senddata(key, code=""):
     path = base_url+str(key)+".zip"
@@ -49,7 +50,7 @@ def success():
             b.close()
         shutil.rmtree(url+"/")
 
-        domain = request.url      # Get the current domain name
+        domain = request.url_root      # Get the current domain name
 
         return render_template("/Container-Pages/success.html", name = str(code), url = f"{domain}downloadrequest?url={code}&pass={code1}")
 
@@ -93,10 +94,11 @@ def downloadrequest():
     else:
         return render_template("/Container-Pages/download.html")
 
-@views.route("/downloadanonym")
+@views.route("/downloadanonym", methods = ['POST', "GET"])
 def downloadanonym():
     if request.method == "POST":
         pass
+        
 
 @views.route("/page1", methods = ['POST', "GET"])
 def page1():

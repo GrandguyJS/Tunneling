@@ -427,7 +427,7 @@ body {
     font-family: PoppinsRegular;
 
     background-color: var(--background-color);
-    color: var(--text-color);
+    color: var(--background-color);
 
     border: 2px solid var(--primary-accent-color);
     border-radius: 5px;
@@ -444,7 +444,7 @@ body {
 
     border: 2px solid var(--primary-accent-color);
     background-color: var(--primary-accent-color);
-    color: white;
+    color: var(--background-color);
 
     cursor: pointer;
 }
