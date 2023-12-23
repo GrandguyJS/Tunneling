@@ -1,0 +1,5 @@
+Uploads/
+database.db
+work.py
+__pycache__
+.DS_Store
