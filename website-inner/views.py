@@ -22,7 +22,7 @@ views = Blueprint("views", __name__)
 
 from . import db
 
-base_url = "/Users/grandguymc/Code/Tunneling/website-inner/Uploads/"
+base_url = "/Users/grandguymc/Code/Tunneling/Uploads/"
 
 def senddata(key, code=""):
     path = base_url+str(key)+".zip"
