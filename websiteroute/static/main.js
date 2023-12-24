@@ -6,3 +6,4 @@ function copyURL(event) {
     var copyText = child.innerText;
     navigator.clipboard.writeText(copyText);
  }
+

@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, send_file, send_from_directory, redirect, url_for
+from flask import Blueprint, render_template, request, send_file, send_from_directory, redirect, url_for, session
 
  # from flask import Response, stream_with_context 
  # WORK IN PROGRESS
@@ -37,6 +37,8 @@ def senddata(key, code=""):
         return "NO"
 
 
+
+
 @views.route("/")
 def home():
     
@@ -44,7 +46,7 @@ def home():
     return render_template("/Container-Pages/main.html", user=current_user)
 
 @views.route('/success', methods = ['POST'])  
-@login_required
+
 def success():  
     if request.method == 'POST':  
         code1 = request.form["password"]
@@ -73,31 +75,38 @@ def success():
         else:
             pass
 
-        file = File(key=str(code), url=url_done, passkey=code1, user = current_user.id)
+        
+
+        file = File(key=str(code), url=url_done, passkey=code1, user = current_user.get_id())
         db.session.add(file)
         db.session.commit()
+        print(file.user)
 
         return render_template("/Container-Pages/success.html", name = str(code), url = url_done, user=current_user)
 
 
 @views.route("/download", methods = ['POST', "GET"])
 def download():
-    if request.method == "POST":
+    if request.method == "POST":  
         key = request.form["url"]
-        code = request.form["pass"]
         path = base_url+str(key)+".zip"
 
-        request1 = senddata(key,code)
-
-        if request1 == "OK":
-            return send_file(path, as_attachment=True)
-        elif request1 == "NO":
+        file = File.query.get(key)
+        if file:
+            if file.user == current_user.id:
+                return send_file(path, as_attachment=True)
+            elif code == file.passkey:
+                code = request.form["pass"]
+                return send_file(path, as_attachment=True)
+            else:
+                return render_template("/Container-Pages/download.html", problem="Wrong Password or Tunnel Key", user=current_user)
+        else:
             return render_template("/Container-Pages/download.html", problem="Wrong Password or Tunnel Key", user=current_user)
     else:
         return render_template("/Container-Pages/download.html", user=current_user)
 
 @views.route("/upload")
-@login_required
+
 def upload():
     return render_template("/Container-Pages/upload.html", user=current_user)
 
@@ -164,14 +173,26 @@ def page3():
 def page2():
     return render_template("/Container-Pages/files.html", user=current_user)
 
-from .views import views
+# Delete
 
-if __name__ == "__main__":
-    with app.app_context():
-        db.create_all()
-        app.register_blueprint(views)
+@views.route("/delete", methods = ["POST"])
+@login_required
+def delete():
+    print("123")
+    key = request.form["key"]
+    file = File.query.filter_by(key=key).first()
+    if file:
+        print("exists")
+        if file.user == current_user.id:
+            print("delete")
+            db.session.delete(file)
+            db.session.commit()
+            return redirect("/page2")
+        else:
+            return redirect("/page2")
+    else:
+        return redirect("/page2")
 
-    app.run(host = "0.0.0.0", port="8000", debug="True", ssl_context="adhoc")
 
 
 

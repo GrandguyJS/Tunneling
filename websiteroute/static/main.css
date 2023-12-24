@@ -390,6 +390,9 @@ body {
 }
 
 .success-copy-wrapper {
+    font-size: 17px;
+    font-family: PoppinsRegular;
+    
     display: flex;
     align-items: center;
     gap: 10px;
@@ -446,6 +449,7 @@ body {
     color: white;
 }
 
+
 .login-submit, .signup-submit, .downloadnonymsubmit {
     box-sizing: content-box;
 
@@ -468,6 +472,8 @@ body {
 
 /* Files */
 
+/*
+
 .files-wrapper {
     display: flex;  
     flex-direction: column;
@@ -486,7 +492,7 @@ body {
 
 }
 
-.files-list-wrapper {
+.files-files-wrapper {
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -531,4 +537,71 @@ body {
     
 }
 
+*/ /* OLD FILES CSS */
 
+/* NEW FILES CSS */
+
+.files-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+}
+
+.files-list-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    
+}
+
+.files-text{
+    font-family: PoppinsRegular;
+    color: var(--primary-color);
+}
+
+.files-wrapper h1 {
+    font-family: PoppinsMedium;
+    color: var(--secondary-color);
+}
+
+.user-file-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+} 
+
+.user-file-delete-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+.file-remove-wrapper {
+    display: flex; 
+    align-items: center;
+
+    cursor: pointer;
+}
+
+.user-file-key-wrapper {
+    min-width: 26vw;
+}
+
+.file-remove-wrapper-child {
+    display: flex;
+    justify-content: center;
+    max-height: fit-content;
+    max-width: fit-content;
+    cursor: pointer;
+}
+
+.file-remove-wrapper-child:hover {
+    color: red; 
+    transition: all 0.2s ease-in-out;
+
+  
+}
