@@ -88,20 +88,23 @@ def success():
 @views.route("/download", methods = ['POST', "GET"])
 def download():
     if request.method == "POST":  
-        key = request.form["url"]
+        key = request.form["key"]
         path = base_url+str(key)+".zip"
 
-        file = File.query.get(key)
+        file = File.query.filter_by(key=key).first()
         if file:
+            
             if file.user == current_user.id:
                 return send_file(path, as_attachment=True)
-            elif code == file.passkey:
-                code = request.form["pass"]
-                return send_file(path, as_attachment=True)
             else:
-                return render_template("/Container-Pages/download.html", problem="Wrong Password or Tunnel Key", user=current_user)
+                code = request.form["pass"]
+                if code == file.passkey:
+                    
+                    return send_file(path, as_attachment=True)
+                else:
+                    return render_template("/Container-Pages/download.html", problem="user", user=current_user)
         else:
-            return render_template("/Container-Pages/download.html", problem="Wrong Password or Tunnel Key", user=current_user)
+            return render_template("/Container-Pages/download.html", problem="file", user=current_user)
     else:
         return render_template("/Container-Pages/download.html", user=current_user)
 
@@ -168,9 +171,9 @@ def page3():
 
 # Files
 
-@views.route("/page2", methods = ['POST', "GET"])
+@views.route("/files", methods = ['POST', "GET"])
 @login_required
-def page2():
+def files():
     return render_template("/Container-Pages/files.html", user=current_user)
 
 # Delete
@@ -187,11 +190,11 @@ def delete():
             print("delete")
             db.session.delete(file)
             db.session.commit()
-            return redirect("/page2")
+            return redirect("/files")
         else:
-            return redirect("/page2")
+            return redirect("/files")
     else:
-        return redirect("/page2")
+        return redirect("/files")
 
 
 
