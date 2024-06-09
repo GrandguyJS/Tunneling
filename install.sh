@@ -8,9 +8,9 @@ pip install gunicorn
 
 sudo ufw allow 8000
 
-cd websiteroute
-
 script_dir=$(dirname "$0")
+
+cd websiteroute
 
 gunicorn -b 0.0.0.0:8000 --chdir /$script_dir main:app
 
