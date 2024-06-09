@@ -17,3 +17,7 @@ git clone https://github.com/GrandguyJS/Tunneling
 ```
 cd Tunneling
 ```
+4. Run the web-app
+```
+sudo ./install.sh
+```
