@@ -1,5 +1,8 @@
 #!/bin/bash
-sudo ufw allow 8000
+echo "Please input the port the website will run on: "
+read port
+
+sudo ufw allow ${port}
 python3 -m venv /venv
 
 source /venv/bin/activate
