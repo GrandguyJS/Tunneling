@@ -1,0 +1,56 @@
+{% extends "base.html" %} {% block title %}Download{% endblock %}
+{% block mid %}
+
+        
+<div class="files-wrapper">
+    <div class="files-list-wrapper">
+        {% for file in user.files %}
+        <div class="user-file-delete-wrapper">
+            <div class="user-file-wrapper">
+                
+                <div class="user-file-key-wrapper">
+                   
+                    <div class="success-copy-wrapper" onclick="copyURL(event)" style="background-color: white;">
+                        <p id="tocopy">{{ file.display_name }}</p>
+                        <span class="material-symbols-outlined">content_copy</span> <!-- Google Copy Icon -->
+                        <p style="display: none;" id="copyText">{{ file.display_name }}</p>
+                     </div>
+                </div>
+                <div class="user-file-copyurl-wrapper success-copy-wrapper" onclick="copyURL(event)">
+                    <p id="tocopy">URL</p>
+                    <span class="material-symbols-outlined">content_copy</span> 
+                    <p style="display: none;" id="copyText">{{ file.url }}</p>
+                </div>
+                <div>
+                    <form action="/download" method="post">
+                        <input type="hidden" name="key" value="{{ file.key }}">
+                        <button type="submit" style="visibility: hidden;">
+                            <div class="user-file-copyurl-wrapper success-copy-wrapper" style="visibility: visible;">
+                                <p id="tocopy">Download</p>
+                            </div>
+                        </button>
+                    </form>
+                    
+                </div>
+            </div>
+            <div class="file-remove-wrapper">
+                <form action="/delete" method="post" class="file-remove-wrapper-child">
+                    <input type="hidden" name="key" value="{{ file.key }}">
+                    <button type="submit" style="visibility: hidden;">
+                        <div style="visibility: visible;" class="file-remove-wrapper-child">
+                            <span class="material-symbols-outlined">delete</span>
+                        </div>
+                    </button>
+                </form>
+               
+            </div>
+        </div>
+        
+        
+        {% endfor %}
+    </div>
+</div>
+
+    
+
+{% endblock %}
