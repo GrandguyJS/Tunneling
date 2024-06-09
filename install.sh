@@ -9,4 +9,4 @@ deactivate
 
 create_service.sh
 
-systemctl start tunelling
+systemctl start tunneling
