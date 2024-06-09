@@ -21,5 +21,19 @@ cd Tunneling
 ```
 sudo ./install.sh
 ```
+5. Start in stop with
+```
+sudo systemctl start/stop tunneling
+```
+
+## Further configuration
+
+1. SSL-encryption
+
+Please use a reverse-proxy like NGINX or caddy to setup. You will also need a domain. (Tutorial for NGINX: [DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-20-04))
+
+2. Changing ports
+
+If you want to change the port the gunicorn service will run on, you will 
 
 Contributed by Timol44
