@@ -8,10 +8,9 @@ pip install gunicorn
 
 sudo ufw allow 8000
 
-script_dir=$(dirname "$0")
-
+script_dir=$(dirname "$(readlink -f "$0")")
 cd websiteroute
 
-gunicorn -b 0.0.0.0:8000 --chdir /$script_dir main:app
+gunicorn -b 0.0.0.0:8000 --chdir $script_dir main:app
 
 deactivate
