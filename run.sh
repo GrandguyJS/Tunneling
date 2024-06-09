@@ -1,3 +1,4 @@
+#!/bin/bash
 source /venv/bin/activate
 
 script_dir=$(dirname "$(readlink -f "$0")")
