@@ -10,6 +10,8 @@ pip install -r requirements.txt
 pip install gunicorn
 deactivate
 
+export PORT = "$port"
+
 ./create_service.sh
 
 systemctl start tunneling
