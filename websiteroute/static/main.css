@@ -472,73 +472,6 @@ body {
 
 /* Files */
 
-/*
-
-.files-wrapper {
-    display: flex;  
-    flex-direction: column;
-    justify-content: center;
-
-    font-family: PoppinsRegular;
-
-    width: fit-content;
-}
-
-.files-title-wrapper {
-    display: flex;
-    justify-content: center;
-
-    margin-bottom: 30px;
-
-}
-
-.files-files-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-}
-
-.user-file-wrapper {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-
-    gap: 15px;
-
-    border: 2px solid var(--primary-accent-color);
-    background-color: var(--background-color);
-    color: var(--background-color);
-    border-radius: 5px;
-
-    padding: 12px;
-
-    color: var(--primary-accent-color);
-
-
-}
-
-.files-copy-wrapper {
-    color: white;
-}
-
-.user-file-delete-wrapper {
-    display: flex;
-    flex-direction: row;
-    gap: 15px
-}
-
-.file-remove-wrapper {
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    
-}
-
-*/ /* OLD FILES CSS */
-
 /* NEW FILES CSS */
 
 .files-wrapper {
@@ -547,6 +480,13 @@ body {
     align-items: center;
     justify-content: center;
     gap: 25px;
+
+    padding: 15px;
+
+    border: 2px solid var(--primary-accent-color);
+    border-radius: 5px;
+    box-shadow: var(--primary-color);
+
 }
 
 .files-list-wrapper {
@@ -589,6 +529,8 @@ body {
 
 .user-file-key-wrapper {
     min-width: 26vw;
+    display: flex;
+    justify-content: right;
 }
 
 .file-remove-wrapper-child {

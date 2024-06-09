@@ -24,21 +24,6 @@ from . import db
 
 base_url = "/Users/grandguymc/Code/Tunneling/Uploads/"
 
-def senddata(key, code=""):
-    path = base_url+str(key)+".zip"
-    path2 = base_url+key+".txt"
-    if os.path.exists(path):
-        with open(path2, "r") as b:
-            if b.read() == str(code):
-                return "OK" 
-            else:
-                return "NO"
-    else:
-        return "NO"
-
-
-
-
 @views.route("/")
 def home():
     
@@ -55,6 +40,8 @@ def success():
         url= base_url+str(code)
         f = request.files.getlist("file[]")
         
+
+
         os.makedirs(url)
         for i in f:
 
@@ -77,10 +64,9 @@ def success():
 
         
 
-        file = File(key=str(code), url=url_done, passkey=code1, user = current_user.get_id())
+        file = File(display_name = f"{f[0].filename} [{len(f)}  File(s)].zip", key=str(code), url=url_done, passkey=code1, user = current_user.get_id()) # Key is name
         db.session.add(file)
         db.session.commit()
-        print(file.user)
 
         return render_template("/Container-Pages/success.html", name = str(code), url = url_done, user=current_user)
 
@@ -95,12 +81,12 @@ def download():
         if file:
             
             if file.user == current_user.id:
-                return send_file(path, as_attachment=True)
+                return send_file(path, as_attachment=True, download_name = file.display_name)
             else:
                 code = request.form["pass"]
                 if code == file.passkey:
                     
-                    return send_file(path, as_attachment=True)
+                    return send_file(path, as_attachment=True, download_name = file.display_name)
                 else:
                     return render_template("/Container-Pages/download.html", problem="user", user=current_user)
         else:
@@ -119,18 +105,15 @@ def downloadrequest():
     if args:
         key = args.get("url")
         code = args.get("pass")
-        if code == "":
-            code = ""
+        code = None if code == "" else code
+    file = File.query.filter_by(key=key).first()
+
+    
+    if file and (code == file.passkey):
         path = base_url+str(key)+".zip"
-
-        request1 = senddata(key,code)
-
-        if request1 == "OK":
-            return send_file(path, as_attachment=True)
-        elif request1 == "NO":
-            return render_template("/Container-Pages/download.html", problem="Wrong Password or Tunnel Key", user=current_user)
+        return send_file(path, as_attachment=True, download_name = file.display_name)
     else:
-        return render_template("/Container-Pages/download.html", user=current_user)
+        return render_template("/Container-Pages/download.html", problem="File does not exist or invalid password", user=current_user)
 
 @views.route("/downloadanonym", methods = ['POST', "GET"])
 def downloadanonym():
@@ -181,13 +164,13 @@ def files():
 @views.route("/delete", methods = ["POST"])
 @login_required
 def delete():
-    print("123")
+
     key = request.form["key"]
     file = File.query.filter_by(key=key).first()
     if file:
-        print("exists")
+
         if file.user == current_user.id:
-            print("delete")
+
             db.session.delete(file)
             db.session.commit()
             return redirect("/files")
@@ -197,6 +180,16 @@ def delete():
         return redirect("/files")
 
 
+# Errors
+
+
+@views.errorhandler(404)
+def page_not_found(e):
+    return render_template('error.html', error=e), 404
+
+@views.errorhandler(500)
+def internal_server_error(e):
+    return render_template('error.html', error=e), 500
 
 
 

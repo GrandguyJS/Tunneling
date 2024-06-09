@@ -3,9 +3,6 @@
 
         
 <div class="files-wrapper">
-    <div class="files-title-wrapper">
-        <h1>Files</h1>
-    </div>
     <div class="files-list-wrapper">
         {% for file in user.files %}
         <div class="user-file-delete-wrapper">
@@ -14,13 +11,13 @@
                 <div class="user-file-key-wrapper">
                    
                     <div class="success-copy-wrapper" onclick="copyURL(event)" style="background-color: white;">
-                        <p id="tocopy">{{ file.key }}</p>
+                        <p id="tocopy">{{ file.display_name }}</p>
                         <span class="material-symbols-outlined">content_copy</span> <!-- Google Copy Icon -->
-                        <p style="display: none;" id="copyText">{{ file.key }}</p>
+                        <p style="display: none;" id="copyText">{{ file.display_name }}</p>
                      </div>
                 </div>
                 <div class="user-file-copyurl-wrapper success-copy-wrapper" onclick="copyURL(event)">
-                    <p id="tocopy">Copy URL</p>
+                    <p id="tocopy">URL</p>
                     <span class="material-symbols-outlined">content_copy</span> 
                     <p style="display: none;" id="copyText">{{ file.url }}</p>
                 </div>
@@ -30,7 +27,6 @@
                         <button type="submit" style="visibility: hidden;">
                             <div class="user-file-copyurl-wrapper success-copy-wrapper" style="visibility: visible;">
                                 <p id="tocopy">Download</p>
-                                <span class="material-symbols-outlined">content_copy</span> 
                             </div>
                         </button>
                     </form>
