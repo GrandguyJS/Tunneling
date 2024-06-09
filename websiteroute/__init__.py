@@ -1,7 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from os import path
-from os.path import abspath, dirname
+import os
 from flask_login import LoginManager
 
 db = SQLAlchemy()
@@ -11,7 +10,7 @@ DB_NAME = "database.db"
 def create_app():
     template_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), 'templates'))
     static_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), 'static'))
-    app = Flask(__name__, template_dir=template_dir, static_dir=static_dir)
+    app = Flask(__name__, template_folder=template_dir, static_folder=static_dir)
     app.config['SECRET_KEY'] = 'hjshjhdjah kjshkjdhjs'
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
     db.init_app(app)
