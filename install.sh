@@ -7,6 +7,6 @@ pip install -r requirements.txt
 pip install gunicorn
 deactivate
 
-../create_service.sh
+./create_service.sh
 
 systemctl start tunneling
