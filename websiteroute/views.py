@@ -180,16 +180,5 @@ def delete():
         return redirect("/files")
 
 
-# Errors
-
-
-@views.errorhandler(404)
-def page_not_found(e):
-    return render_template('error.html', error=e), 404
-
-@views.errorhandler(500)
-def internal_server_error(e):
-    return render_template('error.html', error=e), 500
-
 
 
