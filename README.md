@@ -1,9 +1,9 @@
-# Tunneling
-Website using Flask that allows easy filesharing.
+# About the project
+Tunneling is an open-source, self hostable alternative to file-sharing services.
 
-CSS and Designing by: Timol44
+It enables you to share and download files easily with friends, all in a simple UI. You can setup accounts to view and delete the files all within the website.
 
-## Linux installtion guide
+Simple configuration and install
 
 1. Install Python
 ```
@@ -21,3 +21,5 @@ cd Tunneling
 ```
 sudo ./install.sh
 ```
+
+Contributed by Timol44
