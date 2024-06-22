@@ -79,7 +79,7 @@ def signup():
         if signupreq == 200:
             pass
         else:
-            return render_template("/Logon/signup.html", problem = signupreq)
+            return render_template("/Logon/signup.html", problem = signupreq, user=current_user)
 
         # Add user
 
