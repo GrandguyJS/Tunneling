@@ -26,8 +26,6 @@ base_url = "/Users/grandguymc/Code/Tunneling/Uploads/"
 
 @views.route("/")
 def home():
-    
-    
     return render_template("/Container-Pages/main.html", user=current_user)
 
 @views.route('/success', methods = ['POST'])  
